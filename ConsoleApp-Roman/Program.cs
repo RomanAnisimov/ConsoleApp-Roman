@@ -11,10 +11,10 @@ while (true)
     Console.WriteLine("3. Multiplication");
     Console.WriteLine("4. Digits sum from 1 to N");
     Console.WriteLine("5. Work with array");
-    Console.WriteLine("6. Список задач (мини-ToDo)");
+    Console.WriteLine("6. Mini-ToDo");
 
     Console.WriteLine();
-    Console.Write("Выберите вариант: ");
+    Console.Write("Option: ");
     var option = Console.ReadLine();
 
     if (string.IsNullOrEmpty(option))
@@ -45,6 +45,7 @@ while (true)
             break;
 
         case "6":
+            new MiniToDo().Process();
             break;
 
         default:
