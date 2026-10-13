@@ -9,7 +9,7 @@ while (true)
     Console.WriteLine("1. Calculator");
     Console.WriteLine("2. Even/odd");
     Console.WriteLine("3. Multiplication");
-    Console.WriteLine("4. Сумма чисел от 1 до N");
+    Console.WriteLine("4. Digits sum from 1 to N");
     Console.WriteLine("5. Работа с массивом");
     Console.WriteLine("6. Список задач (мини-ToDo)");
 
@@ -37,6 +37,7 @@ while (true)
             break;
 
         case "4":
+            answer = new SumProcessor().Process();
             break;
 
         case "5":
