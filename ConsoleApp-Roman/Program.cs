@@ -1,11 +1,12 @@
 ﻿using System.Text;
+using ConsoleApp_Roman.Task1;
 
 Console.OutputEncoding = Encoding.UTF8;
 
 while (true)
 {
-    Console.WriteLine("Меню");
-    Console.WriteLine("1. Калькулятор");
+    Console.WriteLine("Menu");
+    Console.WriteLine("1. Calculator");
     Console.WriteLine("2. Чётное/нечётное");
     Console.WriteLine("3. Таблица умножения");
     Console.WriteLine("4. Сумма чисел от 1 до N");
@@ -22,6 +23,8 @@ while (true)
     switch (option)
     {
         case "1":
+            var answer = new Calculator().Calculate();
+            Console.WriteLine($"> {answer}");
             break;
 
         case "2":
