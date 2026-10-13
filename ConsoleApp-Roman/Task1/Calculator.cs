@@ -2,6 +2,8 @@
 
 public class Calculator
 {
+    private readonly string[] _operations = ["+", "-", "*", "/"];
+
     public string Calculate()
     {
         try
@@ -12,11 +14,9 @@ public class Calculator
                 return "";
 
             expression = expression.Replace(" ", "");
-
-            string[] operations = ["+", "-", "*", "/"];
             var expressionOperation = "";
 
-            foreach (var operation in operations)
+            foreach (var operation in _operations)
             {
                 if (expression.Contains(operation))
                 {
