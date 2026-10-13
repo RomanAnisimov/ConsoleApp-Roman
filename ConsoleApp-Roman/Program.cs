@@ -10,7 +10,7 @@ while (true)
     Console.WriteLine("2. Even/odd");
     Console.WriteLine("3. Multiplication");
     Console.WriteLine("4. Digits sum from 1 to N");
-    Console.WriteLine("5. Работа с массивом");
+    Console.WriteLine("5. Work with array");
     Console.WriteLine("6. Список задач (мини-ToDo)");
 
     Console.WriteLine();
@@ -41,6 +41,7 @@ while (true)
             break;
 
         case "5":
+            answer = new ArrayProcessor().Process();
             break;
 
         case "6":
