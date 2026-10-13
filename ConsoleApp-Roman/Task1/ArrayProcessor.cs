@@ -28,7 +28,7 @@ public class ArrayProcessor
                 sum += arr[i];
             }
 
-            var avg = sum / arr.Length;
+            var avg = (double)sum / arr.Length;
 
             var arrValues = new StringBuilder();
             foreach (var item in arr)
