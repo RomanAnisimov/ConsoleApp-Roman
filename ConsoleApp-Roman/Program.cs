@@ -7,7 +7,7 @@ while (true)
 {
     Console.WriteLine("Menu");
     Console.WriteLine("1. Calculator");
-    Console.WriteLine("2. Чётное/нечётное");
+    Console.WriteLine("2. Even/odd");
     Console.WriteLine("3. Таблица умножения");
     Console.WriteLine("4. Сумма чисел от 1 до N");
     Console.WriteLine("5. Работа с массивом");
@@ -20,14 +20,16 @@ while (true)
     if (string.IsNullOrEmpty(option))
         continue;
 
+    var answer = "";
+
     switch (option)
     {
         case "1":
-            var answer = new Calculator().Calculate();
-            Console.WriteLine($"> {answer}");
+            answer = new Calculator().Calculate();
             break;
 
         case "2":
+            answer = new EvenOddProcessor().Process();
             break;
 
         case "3":
@@ -46,4 +48,6 @@ while (true)
             Console.WriteLine("Неизвестный вариант.");
             continue;
     }
+
+    Console.WriteLine($"> {answer}");
 }
