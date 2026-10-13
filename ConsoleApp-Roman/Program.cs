@@ -8,7 +8,7 @@ while (true)
     Console.WriteLine("Menu");
     Console.WriteLine("1. Calculator");
     Console.WriteLine("2. Even/odd");
-    Console.WriteLine("3. Таблица умножения");
+    Console.WriteLine("3. Multiplication");
     Console.WriteLine("4. Сумма чисел от 1 до N");
     Console.WriteLine("5. Работа с массивом");
     Console.WriteLine("6. Список задач (мини-ToDo)");
@@ -33,6 +33,7 @@ while (true)
             break;
 
         case "3":
+            answer = new MultiplicationProcessor().Process();
             break;
 
         case "4":
