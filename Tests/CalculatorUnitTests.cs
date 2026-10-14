@@ -38,7 +38,7 @@ namespace Tests
         }
 
         [Fact]
-        public void Calculate_IncorrectTheFirstValue_ReturnsErrorMessage()
+        public void Calculate_FirstOperandNotDigit_ReturnsOperationNotFound()
         {
             var expression = "a+5";
             var res = _calculator.Calculate(expression);

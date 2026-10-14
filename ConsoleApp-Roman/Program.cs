@@ -2,7 +2,7 @@
 using ConsoleApp_Roman.Task1;
 
 Console.OutputEncoding = Encoding.UTF8;
-MiniToDo miniToDo = null;
+MiniToDo? miniToDo = null;
 
 while (true)
 {
