@@ -24,7 +24,7 @@ public class MultiplicationProcessor
         var sb = new StringBuilder();
         for (var i = 1; i <= 10; i++)
         {
-            sb.AppendLine($"{digit} * {i} = {digit * i} ");
+            sb.AppendLine($"{digit} * {i} = {digit * i}");
         }
 
         return sb.ToString();
