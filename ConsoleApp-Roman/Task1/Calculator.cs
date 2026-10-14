@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp_Roman.Task1;
+﻿using System.Globalization;
+
+namespace ConsoleApp_Roman.Task1;
 
 public class Calculator
 {
@@ -23,7 +25,18 @@ public class Calculator
             }
         }
 
+        if (string.IsNullOrEmpty(expressionOperation))
+        {
+            return "Expression operation is not found. Please check you expression";
+        }
+
         var digitsStr = expression.Split(expressionOperation);
+
+        if (digitsStr.Length != 2)
+        {
+            return "The expression should contain 2 operands";
+        }
+
         if (!int.TryParse(digitsStr[0], out var digit1))
             return "Impossible convert the first operand to digit";
 
@@ -45,7 +58,7 @@ public class Calculator
                 if (digit2 == 0)
                     return "Impossible to divide to 0";
 
-                return (digit1 / digit2).ToString();
+                return ((double)digit1 / digit2).ToString(CultureInfo.InvariantCulture);
 
             default:
                 return "Unknown expression operation";
