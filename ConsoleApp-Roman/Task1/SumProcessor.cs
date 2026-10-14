@@ -10,7 +10,7 @@ public class SumProcessor
         if (string.IsNullOrEmpty(digitStr))
             return "Press a digit for sum";
 
-        if (!int.TryParse(digitStr, out int digit))
+        if (!long.TryParse(digitStr, out long digit))
         {
             return "Impossible to convert to digit";
         }
@@ -24,7 +24,7 @@ public class SumProcessor
     private long SumByLoop(long digit)
     {
         var sum = 0L;
-        for (var i = 1; i <= digit; i++)
+        for (long i = 1; i <= digit; i++)
         {
             sum += i;
         }
