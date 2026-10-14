@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace ConsoleApp_Roman.Task1;
+﻿namespace ConsoleApp_Roman.Task1;
 
 public class SumProcessor
 {

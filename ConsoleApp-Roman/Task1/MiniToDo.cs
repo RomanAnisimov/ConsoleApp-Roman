@@ -8,7 +8,11 @@ public class MiniToDo
     private const string TaskFilePath = "Tasks.json";
     private List<string> _tasks = [];
     
-    public async Task Initialize()
+    /// <summary>
+    /// This async method read tasks from json file.
+    /// </summary>
+    /// <returns></returns>
+    public async Task InitializeAsync()
     {
         try
         {
@@ -28,7 +32,11 @@ public class MiniToDo
         }
     }
 
-    public async Task Process()
+    /// <summary>
+    /// This async method for working with miniToDo
+    /// </summary>
+    /// <returns></returns>
+    public async Task ProcessAsync()
     {
         var isExited = false;
 
@@ -122,6 +130,7 @@ public class MiniToDo
 
     private async Task SaveTasksToFile()
     {
+        // Read tasks from json file
         var json = JsonSerializer.Serialize(_tasks);
         await File.WriteAllTextAsync(TaskFilePath, json);
     }

@@ -3,7 +3,7 @@ using ConsoleApp_Roman.Task1;
 
 Console.OutputEncoding = Encoding.UTF8;
 var miniToDo = new MiniToDo();
-await miniToDo.Initialize();
+await miniToDo.InitializeAsync();
 
 while (true)
 {
@@ -47,7 +47,7 @@ while (true)
             break;
 
         case "6":
-            await miniToDo.Process();
+            await miniToDo.ProcessAsync();
             break;
 
         default:

@@ -4,14 +4,22 @@ namespace ConsoleApp_Roman.Task1;
 
 public class ArrayProcessor
 {
+    private const int ArrSize = 10;
+    private const int RndMin = 1;
+    private const int RndMax = 100;
+
+    /// <summary>
+    /// This method generates random array and search min, max and avg values.
+    /// </summary>
+    /// <returns>Returns generated array and min, max and avg values.</returns>
     public string Process()
     {
-        var arr = new int[10];
+        var arr = new int[ArrSize];
         var rnd = new Random();
 
-        for (var i = 0; i < 10; i++)
+        for (var i = 0; i < ArrSize; i++)
         {
-            arr[i] = rnd.Next(1, 101);
+            arr[i] = rnd.Next(RndMin, RndMax + 1);
         }
 
         var min = arr[0];
@@ -34,7 +42,9 @@ public class ArrayProcessor
             arrValues.Append($"{item} ");
         }
 
-        var res = $"{arrValues}{Environment.NewLine}{min} {max} {avg}";
+        var res = $"Array: {arrValues}" +
+                  $"{Environment.NewLine}" +
+                  $"Min: {min} | Max: {max} | Avg: {avg}";
 
         return res;
     }

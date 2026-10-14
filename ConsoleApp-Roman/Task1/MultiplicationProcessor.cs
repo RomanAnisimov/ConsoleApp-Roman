@@ -4,6 +4,10 @@ namespace ConsoleApp_Roman.Task1;
 
 public class MultiplicationProcessor
 {
+    /// <summary>
+    /// This method calculates table of multiplication
+    /// </summary>
+    /// <returns>Returns table of multiplication</returns>
     public string Process()
     {
         Console.Write("Digit: ");
@@ -20,7 +24,7 @@ public class MultiplicationProcessor
         var sb = new StringBuilder();
         for (var i = 1; i <= 10; i++)
         {
-            sb.Append($"{digit * i} ");
+            sb.AppendLine($"{digit} * {i} = {digit * i} ");
         }
 
         return sb.ToString();

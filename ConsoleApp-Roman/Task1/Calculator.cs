@@ -6,6 +6,10 @@ public class Calculator
 {
     private readonly string[] _operations = ["+", "-", "*", "/"];
 
+    /// <summary>
+    /// This methods calculates expression with 2 operands.
+    /// </summary>
+    /// <returns>Returns result</returns>
     public string Calculate()
     {
         Console.Write("Write expression (2 digits): ");
@@ -13,10 +17,10 @@ public class Calculator
         if (string.IsNullOrEmpty(expression))
             return "";
 
-        expression = expression.Replace(" ", "");
+        expression = expression.Replace(" ", ""); //Remove all spaces
         var expressionOperation = "";
 
-        foreach (var operation in _operations)
+        foreach (var operation in _operations) // Search expression operation (+ or - or * or /)
         {
             if (expression.Contains(operation))
             {
@@ -25,14 +29,14 @@ public class Calculator
             }
         }
 
-        if (string.IsNullOrEmpty(expressionOperation))
+        if (string.IsNullOrEmpty(expressionOperation)) // Expression operation did not found
         {
             return "Expression operation is not found. Please check you expression";
         }
 
         var digitsStr = expression.Split(expressionOperation);
 
-        if (digitsStr.Length != 2)
+        if (digitsStr.Length != 2) // Work only 2 expression operand! I.e., 2+2+2 is not correct expression, since here 3 operands
         {
             return "The expression should contain 2 operands";
         }

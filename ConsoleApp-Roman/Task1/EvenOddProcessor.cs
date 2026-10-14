@@ -2,6 +2,10 @@
 
 public class EvenOddProcessor
 {
+    /// <summary>
+    /// This method checks that the value is even or odd.
+    /// </summary>
+    /// <returns>Returns result. If the value is even then "Even". Otherwise, "Odd".</returns>
     public string Process()
     {
         Console.Write("Digit: ");
