@@ -143,12 +143,12 @@ public class MiniToDo
         }
         catch (IOException ex)
         {
-            Console.WriteLine("Failed to write tasks to json file. The changes will be saved. ");
+            Console.WriteLine("Failed to write tasks to json file. The changes will be lost. ");
             Console.WriteLine(ex.ToString());
         }
         catch (UnauthorizedAccessException ex)
         {
-            Console.WriteLine("Need more permissions for writing ti json file. The changes will be saved.");
+            Console.WriteLine("Need more permissions for writing to json file. The changes will be lost.");
             Console.WriteLine(ex.ToString());
         }
     }

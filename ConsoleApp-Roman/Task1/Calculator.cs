@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
-using System.Numerics;
 using System.Text.RegularExpressions;
+using Microsoft.VisualBasic;
 
 namespace ConsoleApp_Roman.Task1;
 
@@ -90,7 +90,12 @@ public class Calculator
             {
                 if (!string.IsNullOrEmpty(operation))
                 {
-                    CalculateInternal(ref res, operation, d);
+                    var validationRes = ValidateOperation(operation, d);
+                    if (! string.IsNullOrEmpty(validationRes))
+                    {
+                        return validationRes;
+                    }
+                    res = CalculateInternal(res, operation, d);
                 }
                 else if (i == 0) // first value. Just to keep it.
                 {
@@ -103,27 +108,41 @@ public class Calculator
             }
         }
 
-        return res.ToString();
+        return res.ToString(CultureInfo.InvariantCulture);
     }
 
-    private double CalculateInternal(ref double curRes, string operation, double digit)
+    private double CalculateInternal(double curRes, string operation, double digit)
     {
         switch (operation)
         {
             case "+":
-                return curRes += digit;
+                curRes += digit;
+                break;
 
             case "-":
-                return curRes -= digit;
+                curRes -= digit;
+                break;
 
             case "*":
-                return curRes *= digit;
+                curRes *= digit;
+                break;
 
             case "/":
-                return curRes /= digit;
+                curRes /= digit;
+                break;
 
             default:
                 return curRes;
         }
+
+        return curRes;
+    }
+
+    private string ValidateOperation(string operation, double digit)
+    {
+        if (operation == "/" && digit == 0)
+            return "Impossible to divide to 0";
+
+        return string.Empty;
     }
 }
