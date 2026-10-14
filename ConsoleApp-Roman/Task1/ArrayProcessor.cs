@@ -6,43 +6,36 @@ public class ArrayProcessor
 {
     public string Process()
     {
-        try
+        var arr = new int[10];
+        var rnd = new Random();
+
+        for (var i = 0; i < 10; i++)
         {
-            var arr = new int[10];
-            var rnd = new Random();
-
-            for (var i = 0; i < 10; i++)
-            {
-                arr[i] = rnd.Next(1, 101);
-            }
-
-            var min = arr[0];
-            var max = arr[0];
-
-            var sum = 0;
-            for (var i = 0; i < arr.Length; i++)
-            {
-                if (arr[i] < min) min = arr[i];
-                if (arr[i] > max) max = arr[i];
-
-                sum += arr[i];
-            }
-
-            var avg = (double)sum / arr.Length;
-
-            var arrValues = new StringBuilder();
-            foreach (var item in arr)
-            {
-                arrValues.Append($"{item} ");
-            }
-
-            var res = $"{arrValues}{Environment.NewLine}{min} {max} {avg}";
-
-            return res;
+            arr[i] = rnd.Next(1, 101);
         }
-        catch (Exception ex)
+
+        var min = arr[0];
+        var max = arr[0];
+
+        var sum = 0;
+        for (var i = 0; i < arr.Length; i++)
         {
-            return ex.Message;
+            if (arr[i] < min) min = arr[i];
+            if (arr[i] > max) max = arr[i];
+
+            sum += arr[i];
         }
+
+        var avg = (double)sum / arr.Length;
+
+        var arrValues = new StringBuilder();
+        foreach (var item in arr)
+        {
+            arrValues.Append($"{item} ");
+        }
+
+        var res = $"{arrValues}{Environment.NewLine}{min} {max} {avg}";
+
+        return res;
     }
 }

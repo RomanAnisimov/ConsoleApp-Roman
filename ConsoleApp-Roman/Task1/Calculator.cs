@@ -6,56 +6,49 @@ public class Calculator
 
     public string Calculate()
     {
-        try
+        Console.Write("Write expression (2 digits): ");
+        var expression = Console.ReadLine();
+        if (string.IsNullOrEmpty(expression))
+            return "";
+
+        expression = expression.Replace(" ", "");
+        var expressionOperation = "";
+
+        foreach (var operation in _operations)
         {
-            Console.Write("Write expression (2 digits): ");
-            var expression = Console.ReadLine();
-            if (string.IsNullOrEmpty(expression))
-                return "";
-
-            expression = expression.Replace(" ", "");
-            var expressionOperation = "";
-
-            foreach (var operation in _operations)
+            if (expression.Contains(operation))
             {
-                if (expression.Contains(operation))
-                {
-                    expressionOperation = operation;
-                    break;
-                }
-            }
-
-            var digitsStr = expression.Split(expressionOperation);
-            if (!int.TryParse(digitsStr[0], out var digit1))
-                return "Impossible convert the first operand to digit";
-
-            if (!int.TryParse(digitsStr[1], out var digit2))
-                return "Impossible convert the second operand to digit";
-
-            switch (expressionOperation)
-            {
-                case "+":
-                    return (digit1 + digit2).ToString();
-
-                case "-":
-                    return (digit1 - digit2).ToString();
-
-                case "*":
-                    return (digit1 * digit2).ToString();
-
-                case "/":
-                    if (digit2 == 0)
-                        return "Impossible to divide to 0";
-
-                    return (digit1 / digit2).ToString();
-
-                default:
-                    return "Unknown expression operation";
+                expressionOperation = operation;
+                break;
             }
         }
-        catch (Exception ex)
+
+        var digitsStr = expression.Split(expressionOperation);
+        if (!int.TryParse(digitsStr[0], out var digit1))
+            return "Impossible convert the first operand to digit";
+
+        if (!int.TryParse(digitsStr[1], out var digit2))
+            return "Impossible convert the second operand to digit";
+
+        switch (expressionOperation)
         {
-            return ex.Message;
+            case "+":
+                return (digit1 + digit2).ToString();
+
+            case "-":
+                return (digit1 - digit2).ToString();
+
+            case "*":
+                return (digit1 * digit2).ToString();
+
+            case "/":
+                if (digit2 == 0)
+                    return "Impossible to divide to 0";
+
+                return (digit1 / digit2).ToString();
+
+            default:
+                return "Unknown expression operation";
         }
     }
 }

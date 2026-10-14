@@ -6,28 +6,21 @@ public class SumProcessor
 {
     public string Process()
     {
-        try
+        Console.Write("Digit: ");
+        var digitStr = Console.ReadLine();
+
+        if (string.IsNullOrEmpty(digitStr))
+            return "Press a digit for sum";
+
+        if (!int.TryParse(digitStr, out int digit))
         {
-            Console.Write("Digit: ");
-            var digitStr = Console.ReadLine();
-
-            if (string.IsNullOrEmpty(digitStr))
-                return "Press a digit for sum";
-
-            if (!int.TryParse(digitStr, out int digit))
-            {
-                return "Impossible to convert to digit";
-            }
-
-            var sumByLoop = SumByLoop(digit);
-            var sumByFormula = SumByFormula(digit);
-
-            return $"{sumByLoop} == {sumByFormula}";
+            return "Impossible to convert to digit";
         }
-        catch (Exception ex)
-        {
-            return ex.Message;
-        }
+
+        var sumByLoop = SumByLoop(digit);
+        var sumByFormula = SumByFormula(digit);
+
+        return $"{sumByLoop} == {sumByFormula}";
     }
 
     private long SumByLoop(long digit)

@@ -1,55 +1,72 @@
 ﻿using System.Text;
+using System.Text.Json;
 
 namespace ConsoleApp_Roman.Task1;
 
 public class MiniToDo
 {
-    private readonly List<string> _tasks = new List<string>();
-
-    public void Process()
+    private const string TaskFilePath = "Tasks.json";
+    private List<string> _tasks = [];
+    
+    public async Task Initialize()
     {
         try
         {
-            var isExited = false;
-
-            while (!isExited)
-            {
-                ShowMenu();
-
-                Console.WriteLine();
-                Console.Write("Option: ");
-                var option = Console.ReadLine();
-
-                if (string.IsNullOrEmpty(option))
-                    continue;
-
-                switch (option)
-                {
-                    case "1":
-                        AddTask();
-                        break;
-
-                    case "2":
-                        ShowTasks();
-                        break;
-
-                    case "3":
-                        RemoveByNumber();
-                        break;
-
-                    case "4":
-                        isExited = true;
-                        break;
-
-                    default:
-                        Console.WriteLine("Неизвестный вариант.");
-                        continue;
-                }
-            }
+            var json = await File.ReadAllTextAsync(TaskFilePath);
+            _tasks = JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>();
         }
-        catch (Exception ex)
+        catch (JsonException)
         {
+            Console.WriteLine("The json file was corrupted. Empty list tasks will be used.");
+            _tasks = new List<string>();
+        }
+        catch (IOException ex)
+        {
+            Console.WriteLine("Failed to read json file with tasks. Empty list tasks will be used.");
+            Console.WriteLine(ex.Message);
+            _tasks = new List<string>();
+        }
+    }
 
+    public async Task Process()
+    {
+        var isExited = false;
+
+        while (!isExited)
+        {
+            ShowMenu();
+
+            Console.WriteLine();
+            Console.Write("Option: ");
+            var option = Console.ReadLine();
+
+            if (string.IsNullOrEmpty(option))
+                continue;
+
+            switch (option)
+            {
+                case "1":
+                    AddTask();
+                    await SaveTasksToFile();
+                    break;
+
+                case "2":
+                    ShowTasks();
+                    break;
+
+                case "3":
+                    RemoveByNumber();
+                    await SaveTasksToFile();
+                    break;
+
+                case "4":
+                    isExited = true;
+                    break;
+
+                default:
+                    Console.WriteLine("Неизвестный вариант.");
+                    continue;
+            }
         }
     }
 
@@ -93,10 +110,16 @@ public class MiniToDo
 
         if (int.TryParse(indexStr, out var index))
         {
-            if (index > _tasks.Count)
+            if (index > _tasks.Count || index < 1)
                 return;
 
             _tasks.RemoveAt(index - 1);
         }
+    }
+
+    private async Task SaveTasksToFile()
+    {
+        var json = JsonSerializer.Serialize(_tasks);
+        await File.WriteAllTextAsync(TaskFilePath, json);
     }
 }

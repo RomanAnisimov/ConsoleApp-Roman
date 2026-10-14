@@ -2,6 +2,8 @@
 using ConsoleApp_Roman.Task1;
 
 Console.OutputEncoding = Encoding.UTF8;
+var miniToDo = new MiniToDo();
+await miniToDo.Initialize();
 
 while (true)
 {
@@ -45,7 +47,7 @@ while (true)
             break;
 
         case "6":
-            new MiniToDo().Process();
+            await miniToDo.Process();
             break;
 
         default:
