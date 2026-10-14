@@ -1,4 +1,6 @@
 ﻿using System.Globalization;
+using System.Numerics;
+using System.Text.RegularExpressions;
 
 namespace ConsoleApp_Roman.Task1;
 
@@ -66,6 +68,62 @@ public class Calculator
 
             default:
                 return "Unknown expression operation";
+        }
+    }
+
+    public string CalculateRegex()
+    {
+        Console.Write("Write expression: ");
+        var expression = Console.ReadLine();
+        if (string.IsNullOrEmpty(expression))
+            return "";
+
+        var matches = Regex.Matches(expression, @"(?<=[*/+\-]|^)[+-]?\d+|[*/+\-]")
+            .Select(x => x.Value)
+            .ToArray();
+
+        double res = 0.0;
+        var operation = "";
+        for (var i = 0; i < matches.Length; i++)
+        {
+            if (double.TryParse(matches[i], out double d))
+            {
+                if (!string.IsNullOrEmpty(operation))
+                {
+                    CalculateInternal(ref res, operation, d);
+                }
+                else if (i == 0) // first value. Just to keep it.
+                {
+                    res = d;
+                }
+            }
+            else if (_operations.Contains(matches[i]))
+            {
+                operation = matches[i];
+            }
+        }
+
+        return res.ToString();
+    }
+
+    private double CalculateInternal(ref double curRes, string operation, double digit)
+    {
+        switch (operation)
+        {
+            case "+":
+                return curRes += digit;
+
+            case "-":
+                return curRes -= digit;
+
+            case "*":
+                return curRes *= digit;
+
+            case "/":
+                return curRes /= digit;
+
+            default:
+                return curRes;
         }
     }
 }
