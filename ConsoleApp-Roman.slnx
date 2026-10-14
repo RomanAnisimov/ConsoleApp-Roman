@@ -4,4 +4,5 @@
     <File Path="README.md" />
   </Folder>
   <Project Path="ConsoleApp-Roman/ConsoleApp-Roman.csproj" />
+  <Project Path="Tests/Tests.csproj" Id="1164a23d-fee3-4e12-9702-75cc16dbabd3" />
 </Solution>

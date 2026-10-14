@@ -25,12 +25,11 @@ while (true)
 
     switch (option)
     {
-        case "0":
-            answer = new Calculator().CalculateRegex();
-            break;
-
         case "1":
-            answer = new Calculator().Calculate();
+            Console.Write("Write expression (2 digits): ");
+            var expressionCalc = Console.ReadLine();
+
+            answer = new Calculator().Calculate(expressionCalc);
             break;
 
         case "2":
