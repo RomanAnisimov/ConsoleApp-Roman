@@ -34,7 +34,12 @@ public class SumProcessor
 
     private long SumByFormula(long digit)
     {
-        var sum = digit * (digit + 1) / 2;
-        return sum;
+        checked
+        {
+            var sum = digit % 2 == 0
+                ? digit / 2 * (digit + 1)
+                : digit * ((digit + 1) / 2);
+            return sum;
+        }
     }
 }
