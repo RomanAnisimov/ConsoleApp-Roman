@@ -1,11 +1,9 @@
 ﻿using System.Globalization;
-using System.Text.RegularExpressions;
 
 namespace ConsoleApp_Roman.Task1;
 
 public class Calculator
 {
-    private readonly string[] _operations = ["+", "-", "*", "/"];
 
     /// <summary>
     /// This method calculates expression with 2 operands.
