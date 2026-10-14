@@ -7,7 +7,7 @@ public class MiniToDo
 {
     private const string TaskFilePath = "Tasks.json";
     private List<string> _tasks = [];
-    
+
     /// <summary>
     /// This async method read tasks from json file.
     /// </summary>
@@ -130,8 +130,21 @@ public class MiniToDo
 
     private async Task SaveTasksToFile()
     {
-        // Read tasks from json file
-        var json = JsonSerializer.Serialize(_tasks);
-        await File.WriteAllTextAsync(TaskFilePath, json);
+        try
+        {
+            // Read tasks from json file
+            var json = JsonSerializer.Serialize(_tasks);
+            await File.WriteAllTextAsync(TaskFilePath, json);
+        }
+        catch (IOException ex)
+        {
+            Console.WriteLine("Failed to write tasks to json file. The changes will be saved. ");
+            Console.WriteLine(ex.ToString());
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            Console.WriteLine("Need more permissions for writing ti json file. The changes will be saved.");
+            Console.WriteLine(ex.ToString());
+        }
     }
 }
