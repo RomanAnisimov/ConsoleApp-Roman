@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using System.Text.RegularExpressions;
-using Microsoft.VisualBasic;
 
 namespace ConsoleApp_Roman.Task1;
 
@@ -9,7 +8,7 @@ public class Calculator
     private readonly string[] _operations = ["+", "-", "*", "/"];
 
     /// <summary>
-    /// This methods calculates expression with 2 operands.
+    /// This method calculates expression with 2 operands.
     /// </summary>
     /// <returns>Returns result</returns>
     public string Calculate()
@@ -82,6 +81,11 @@ public class Calculator
             .Select(x => x.Value)
             .ToArray();
 
+        if (matches.Length != 3) // Work only 2 expression operand! I.e., 2+2+2 is not correct expression, since here 3 operands
+        {
+            return "The expression should contain 2 operands";
+        }
+
         double res = 0.0;
         var operation = "";
         for (var i = 0; i < matches.Length; i++)
@@ -96,6 +100,7 @@ public class Calculator
                         return validationRes;
                     }
                     res = CalculateInternal(res, operation, d);
+                    operation = "";
                 }
                 else if (i == 0) // first value. Just to keep it.
                 {
