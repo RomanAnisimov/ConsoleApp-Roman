@@ -60,5 +60,6 @@ while (true)
             continue;
     }
 
-    Console.WriteLine($"> {answer}");
+    if (!string.IsNullOrEmpty(answer))
+        Console.WriteLine($"> {answer}");
 }

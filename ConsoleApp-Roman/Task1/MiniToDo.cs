@@ -5,8 +5,13 @@ namespace ConsoleApp_Roman.Task1;
 
 public class MiniToDo
 {
-    private const string TaskFilePath = "Tasks.json";
+    private readonly string _taskFilePath;
     private List<string> _tasks = [];
+
+    public MiniToDo()
+    {
+        _taskFilePath = Path.Combine(AppContext.BaseDirectory, "Tasks.json");
+    }
 
     /// <summary>
     /// This async method read tasks from json file.
@@ -16,7 +21,7 @@ public class MiniToDo
     {
         try
         {
-            var json = await File.ReadAllTextAsync(TaskFilePath);
+            var json = await File.ReadAllTextAsync(_taskFilePath);
             _tasks = JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>();
         }
         catch (JsonException)
@@ -134,7 +139,7 @@ public class MiniToDo
         {
             // Read tasks from json file
             var json = JsonSerializer.Serialize(_tasks);
-            await File.WriteAllTextAsync(TaskFilePath, json);
+            await File.WriteAllTextAsync(_taskFilePath, json);
         }
         catch (IOException ex)
         {
