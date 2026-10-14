@@ -25,8 +25,12 @@ while (true)
 
     switch (option)
     {
-        case "1":
+        case "0":
             answer = new Calculator().CalculateRegex();
+            break;
+
+        case "1":
+            answer = new Calculator().Calculate();
             break;
 
         case "2":
