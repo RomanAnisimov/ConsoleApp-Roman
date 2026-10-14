@@ -92,7 +92,10 @@ public class MiniToDo
     private void ShowTasks()
     {
         if (_tasks.Count == 0)
+        {
             Console.WriteLine("[EMPTY]");
+            return;
+        }
 
         var sb = new StringBuilder();
         for (var i = 0; i < _tasks.Count; i++)
